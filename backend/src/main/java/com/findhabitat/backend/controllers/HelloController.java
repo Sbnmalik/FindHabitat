@@ -3,10 +3,12 @@ package com.findhabitat.backend.controllers;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.Map;
+
 @RestController
 public class HelloController {
         @GetMapping("/api/hello")
-    public String hello() {
-        return "Backend is running!";
-}
+        public Map<String, String> sayHello() {
+                return Map.of("message", "Hello, World!", "status", "success");
+        }
 }
