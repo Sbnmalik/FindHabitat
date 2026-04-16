@@ -1,4 +1,4 @@
-package com.findhabitat.backend;
+package com.findhabitat;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
