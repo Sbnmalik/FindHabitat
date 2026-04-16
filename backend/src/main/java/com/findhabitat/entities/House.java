@@ -61,15 +61,17 @@ public class House {
 
     @PrePersist
     public void onCreate() {
-        this.createdAt = LocalDateTime.now();
-        this.updatedAt = LocalDateTime.now();
+        LocalDateTime now = LocalDateTime.now();
+        this.createdAt = now;
+        this.updatedAt = now;
         if (this.isAvailable == null) {
             this.isAvailable = true;
         }
     }
         @PreUpdate
     public void onUpdate() {
-        this.updatedAt = LocalDateTime.now();
+        LocalDateTime now = LocalDateTime.now();
+        this.updatedAt = now;
     }
 
     public Long getHouseId() {
