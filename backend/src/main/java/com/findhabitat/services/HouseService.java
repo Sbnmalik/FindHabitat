@@ -4,15 +4,27 @@ import com.findhabitat.entities.House;
 import com.findhabitat.interfaces.HouseInterface;
 import com.findhabitat.repositories.HouseRepository;
 import org.springframework.stereotype.Service;
+import com.findhabitat.dtos.HouseRequest;
+import com.findhabitat.dtos.HouseResponse;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
 public class HouseService implements HouseInterface {
+
+    private final HouseRepository houseRepository;
+
     public HouseService (HouseRepository houseRepository) {
         this.houseRepository = houseRepository;
     }
+        @Override
+    public HouseResponse createHouse(HouseRequest request) {
+        House house = mapToEntity(request);
+        House savedHouse = houseRepository.save(house);
+        return mapToResponse(savedHouse);
+    }
+
         @Override
     public List<HouseResponse> getAllHouses() {
         return houseRepository.findAll()
@@ -83,7 +95,7 @@ public class HouseService implements HouseInterface {
 
     private HouseResponse mapToResponse(House house) {
         HouseResponse response = new HouseResponse();
-        response.setHouseId(house.getHouseId());
+        response.sethouseId(house.getHouseId());
         response.setAddressLine(house.getAddressLine());
         response.setCity(house.getCity());
         response.setPostalCode(house.getPostalCode());

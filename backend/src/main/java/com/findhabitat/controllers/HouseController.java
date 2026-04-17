@@ -4,6 +4,8 @@ import com.findhabitat.services.HouseService;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
+import com.findhabitat.dtos.HouseRequest;
+import com.findhabitat.dtos.HouseResponse;
 
 import java.utils.List;
 
@@ -43,4 +45,5 @@ public class HouseController {
     public void deleteHouse(@PathVariable Long id) {
         houseService.deleteHouse(id);
     
+}
 }

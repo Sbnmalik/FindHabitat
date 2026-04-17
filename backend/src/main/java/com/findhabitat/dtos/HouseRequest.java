@@ -7,8 +7,6 @@ import java.time.LocalDate;
 // import lombok.Setter;
 // use @Getter and @Setter annotations from Lombok to generate getters and setters automatically
 
-import com.fasterxml.jackson.annotation.JsonGetter;
-
 public class HouseRequest {
     
     @NotBlank
