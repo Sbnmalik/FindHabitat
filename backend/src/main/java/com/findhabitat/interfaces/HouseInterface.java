@@ -1,5 +1,7 @@
 package com.findhabitat.interfaces;
 
+import com.findhabitat.dtos.HouseRequest;
+import com.findhabitat.dtos.HouseResponse;
 import java.util.List;
 
 public interface HouseInterface {

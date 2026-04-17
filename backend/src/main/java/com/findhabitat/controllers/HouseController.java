@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.*;
 import com.findhabitat.dtos.HouseRequest;
 import com.findhabitat.dtos.HouseResponse;
 
-import java.utils.List;
+import java.util.List;
 
 @RestController
 @RequestMapping("/api/houses")
