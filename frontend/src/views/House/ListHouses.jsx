@@ -17,4 +17,17 @@ export default function ListHouses() {
             setLoading(false);
         }   
     }
+
+     async function handleDelete(id) {
+     const confirmed = window.confirm("Are you sure you want to delete this house?");
+        if (!confirmed) return;
+
+        try {
+        await deleteHouse(id);
+            setHouses((prev) => prev.filter((house) => house.houseId !== id));
+        } catch (error) {
+            console.error(error);
+            alert("Failed to delete house");
+        }
+    }
 }
