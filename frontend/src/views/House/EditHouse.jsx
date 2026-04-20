@@ -1,4 +1,4 @@
-import HouseForm from "../../components/HouseForm";
+import HouseForm from "../../components/layout/HouseForm";
 import { useNavigate, useParams } from "react-router-dom";
 import { getHouseById, updateHouse } from "../api/houseApi";
 import { useEffect,useState } from "react";
