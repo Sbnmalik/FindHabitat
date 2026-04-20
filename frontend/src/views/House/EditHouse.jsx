@@ -21,4 +21,19 @@ export default function EditHouse() {
 
     loadHouse();
   }, [id]);
+
+    async function handleUpdate(data) {
+    try {
+      await updateHouse(id, data);
+      navigate("/");
+    } catch (error) {
+      console.error(error);
+      alert("Failed to update house");
+    }
+  }
+
+  if (!house) return <p>Loading house...</p>;
+    return (
+        
+    );
 }
