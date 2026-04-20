@@ -20,7 +20,7 @@ export default function HouseForm({initialData, onSubmit, submitLabel}){
 
       useEffect(() => {
     if (initialData) {
-      setFormData({
+        setFormData({
         addressLine: initialData.addressLine || "",
         city: initialData.city || "",
         postalCode: initialData.postalCode || "",
@@ -62,4 +62,175 @@ export default function HouseForm({initialData, onSubmit, submitLabel}){
 
     onSubmit(payload);
   }
+
+    return (
+    <form onSubmit={handleSubmit}>
+      <div>
+        <label>Address</label>
+        <input
+          type="text"
+          name="addressLine"
+          value={formData.addressLine}
+          onChange={handleChange}
+          required
+        />
+      </div>
+
+      <div>
+        <label>City</label>
+        <input
+          type="text"
+          name="city"
+          value={formData.city}
+          onChange={handleChange}
+          required
+        />
+      </div>
+
+      <div>
+        <label>Postal Code</label>
+        <input
+          type="text"
+          name="postalCode"
+          value={formData.postalCode}
+          onChange={handleChange}
+        />
+      </div>
+
+      <div>
+        <label>Property Type</label>
+        <select
+          name="propertyType"
+          value={formData.propertyType}
+          onChange={handleChange}
+          required
+        >
+          <option value="">Select</option>
+          <option value="Apartment">Apartment</option>
+          <option value="Studio">Studio</option>
+          <option value="Room">Room</option>
+          <option value="House">House</option>
+          <option value="Shared House">Shared House</option>
+        </select>
+      </div>
+
+      <div>
+        <label>Ownership Status</label>
+        <select
+          name="ownershipStatus"
+          value={formData.ownershipStatus}
+          onChange={handleChange}
+          required
+        >
+          <option value="">Select</option>
+          <option value="Rent">Rent</option>
+          <option value="Sale">Sale</option>
+          <option value="Sublet">Sublet</option>
+        </select>
+      </div>
+
+      <div>
+        <label>Floor Level</label>
+        <input
+          type="number"
+          name="floorLevel"
+          value={formData.floorLevel}
+          onChange={handleChange}
+        />
+      </div>
+
+      <div>
+        <label>Parking Available</label>
+        <select
+          name="parkingAvailability"
+          value={String(formData.parkingAvailability)}
+          onChange={(e) =>
+            setFormData((prev) => ({
+              ...prev,
+              parkingAvailability: e.target.value === "true",
+            }))
+          }
+        >
+          <option value="true">Yes</option>
+          <option value="false">No</option>
+        </select>
+      </div>
+
+      <div>
+        <label>Description</label>
+        <textarea
+          name="description"
+          value={formData.description}
+          onChange={handleChange}
+        />
+      </div>
+
+      <div>
+        <label>Bedrooms</label>
+        <input
+          type="number"
+          name="bedrooms"
+          value={formData.bedrooms}
+          onChange={handleChange}
+          required
+        />
+      </div>
+
+      <div>
+        <label>Bathrooms</label>
+        <input
+          type="number"
+          name="bathrooms"
+          value={formData.bathrooms}
+          onChange={handleChange}
+          required
+        />
+      </div>
+
+      <div>
+        <label>Move-in Date</label>
+        <input
+          type="date"
+          name="moveInDate"
+          value={formData.moveInDate}
+          onChange={handleChange}
+        />
+      </div>
+
+      <div>
+        <label>Monthly Price</label>
+        <input
+          type="number"
+          step="0.01"
+          name="monthlyPrice"
+          value={formData.monthlyPrice}
+          onChange={handleChange}
+          required
+        />
+      </div>
+
+      <div>
+        <label>Living Area (sqm)</label>
+        <input
+          type="number"
+          step="0.01"
+          name="livingAreaSqm"
+          value={formData.livingAreaSqm}
+          onChange={handleChange}
+        />
+      </div>
+
+      <div>
+        <label>Available</label>
+        <input
+          type="checkbox"
+          name="isAvailable"
+          checked={formData.isAvailable}
+          onChange={handleChange}
+        />
+      </div>
+
+      <button type="submit">{submitLabel}</button>
+    </form>
+  );
 }
