@@ -50,4 +50,16 @@ export default function HouseForm({initialData, onSubmit, submitLabel}){
 
     function handleSubmit(e) {
     e.preventDefault();
+        const payload = {
+      ...formData,
+      floorLevel: formData.floorLevel === "" ? null : Number(formData.floorLevel),
+      bedrooms: Number(formData.bedrooms),
+      bathrooms: Number(formData.bathrooms),
+      monthlyPrice: Number(formData.monthlyPrice),
+      livingAreaSqm:
+        formData.livingAreaSqm === "" ? null : Number(formData.livingAreaSqm),
+    };
+
+    onSubmit(payload);
+  }
 }
