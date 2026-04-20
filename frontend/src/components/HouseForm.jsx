@@ -17,4 +17,25 @@ export default function HouseForm({initialData, onSubmit, submitLabel}){
     livingAreaSqm: "",
     isAvailable: true,
     });
+
+      useEffect(() => {
+    if (initialData) {
+      setFormData({
+        addressLine: initialData.addressLine || "",
+        city: initialData.city || "",
+        postalCode: initialData.postalCode || "",
+        propertyType: initialData.propertyType || "",
+        ownershipStatus: initialData.ownershipStatus || "",
+        floorLevel: initialData.floorLevel ?? "",
+        parkingAvailability: initialData.parkingAvailability ?? false,
+        description: initialData.description || "",
+        bedrooms: initialData.bedrooms ?? 0,
+        bathrooms: initialData.bathrooms ?? 0,
+        moveInDate: initialData.moveInDate || "",
+        monthlyPrice: initialData.monthlyPrice ?? "",
+        livingAreaSqm: initialData.livingAreaSqm ?? "",
+        isAvailable: initialData.isAvailable ?? true,
+      });
+    }
+  }, [initialData])
 }
