@@ -47,4 +47,7 @@ export default function HouseForm({initialData, onSubmit, submitLabel}){
       [name]: type === "checkbox" ? checked : value,
     }));
   }
+
+    function handleSubmit(e) {
+    e.preventDefault();
 }
