@@ -34,6 +34,13 @@ export default function EditHouse() {
 
   if (!house) return <p>Loading house...</p>;
     return (
-        
+            <div>
+      <h1>Edit House</h1>
+      <HouseForm
+        initialData={house}
+        onSubmit={handleUpdate}
+        submitLabel="Update House"
+      />
+     </div>
     );
 }
