@@ -19,25 +19,9 @@ export default function HouseForm({initialData, onSubmit, submitLabel}){
     });
 
       useEffect(() => {
-    if (initialData) {
-        setFormData({
-        addressLine: initialData.addressLine || "",
-        city: initialData.city || "",
-        postalCode: initialData.postalCode || "",
-        propertyType: initialData.propertyType || "",
-        ownershipStatus: initialData.ownershipStatus || "",
-        floorLevel: initialData.floorLevel ?? "",
-        parkingAvailability: initialData.parkingAvailability ?? false,
-        description: initialData.description || "",
-        bedrooms: initialData.bedrooms ?? 0,
-        bathrooms: initialData.bathrooms ?? 0,
-        moveInDate: initialData.moveInDate || "",
-        monthlyPrice: initialData.monthlyPrice ?? "",
-        livingAreaSqm: initialData.livingAreaSqm ?? "",
-        isAvailable: initialData.isAvailable ?? true,
-      });
-    }
-  }, [initialData])
+        fetchHouses();        
+    }, [fetchHouses]);
+  }, [initialData]
 
     function handleChange(e) {
     const { name, value, type, checked } = e.target;
