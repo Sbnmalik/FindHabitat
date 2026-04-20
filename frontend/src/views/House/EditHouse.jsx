@@ -4,5 +4,7 @@ import { getHouseById, updateHouse } from "../api/houseApi";
 import { useEffect,useState } from "react";
 
 export default function EditHouse() {
-    
+    const { id } = useParams();
+    const navigate = useNavigate();
+    const [house, setHouse] = useState(null);
 }
