@@ -1,29 +1,28 @@
-import {useState, useEffect} from 'react';
+import { useState } from "react";
 
-export default function HouseForm({initialData, onSubmit, submitLabel}){
-    const [formData, setFormData] = useState({
-    addressLine: "",
-    city: "",
-    postalCode: "",
-    propertyType: "",
-    ownershipStatus: "",
-    floorLevel: "",
-    parkingAvailability: false,
-    description: "",
-    bedrooms: 0,
-    bathrooms: 0,
-    moveInDate: "",
-    monthlyPrice: "",
-    livingAreaSqm: "",
-    isAvailable: true,
-    });
+function buildFormData(initialData) {
+  return {
+    addressLine: initialData?.addressLine || "",
+    city: initialData?.city || "",
+    postalCode: initialData?.postalCode || "",
+    propertyType: initialData?.propertyType || "",
+    ownershipStatus: initialData?.ownershipStatus || "",
+    floorLevel: initialData?.floorLevel ?? "",
+    parkingAvailability: initialData?.parkingAvailability ?? false,
+    description: initialData?.description || "",
+    bedrooms: initialData?.bedrooms ?? 0,
+    bathrooms: initialData?.bathrooms ?? 0,
+    moveInDate: initialData?.moveInDate || "",
+    monthlyPrice: initialData?.monthlyPrice ?? "",
+    livingAreaSqm: initialData?.livingAreaSqm ?? "",
+    isAvailable: initialData?.isAvailable ?? true,
+  };
+}
 
-      useEffect(() => {
-        fetchHouses();        
-    }, [fetchHouses]);
-  }, [initialData]
+export default function HouseForm({ initialData, onSubmit, submitLabel }) {
+  const [formData, setFormData] = useState(() => buildFormData(initialData));
 
-    function handleChange(e) {
+  function handleChange(e) {
     const { name, value, type, checked } = e.target;
 
     setFormData((prev) => ({
@@ -32,9 +31,10 @@ export default function HouseForm({initialData, onSubmit, submitLabel}){
     }));
   }
 
-    function handleSubmit(e) {
+  function handleSubmit(e) {
     e.preventDefault();
-        const payload = {
+
+    const payload = {
       ...formData,
       floorLevel: formData.floorLevel === "" ? null : Number(formData.floorLevel),
       bedrooms: Number(formData.bedrooms),
@@ -47,7 +47,7 @@ export default function HouseForm({initialData, onSubmit, submitLabel}){
     onSubmit(payload);
   }
 
-    return (
+  return (
     <form onSubmit={handleSubmit}>
       <div>
         <label>Address</label>
