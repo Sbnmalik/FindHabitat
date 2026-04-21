@@ -1,7 +1,6 @@
 import HouseForm from "../../components/layout/HouseForm";
 import { useNavigate } from "react-router-dom";
-import {createHouse} from "../src/api/houseApi";
-
+import { createHouse } from "../../api/houseApi";
 export default function CreateHouse() {
     const navigate = useNavigate();
 

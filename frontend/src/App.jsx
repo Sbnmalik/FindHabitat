@@ -1,6 +1,6 @@
 import AppRouter from "./routes/AppRouter";
 import "./App.css";
-import { Routes,Router, BrowserRouter } from "react-router-dom";
+import { Routes,Route, BrowserRouter } from "react-router-dom";
 import CreateHouse from "./views/House/CreateHouse";
 import EditHouse from "./views/House/EditHouse";
 import ListHouses from "./views/House/ListHouses";
