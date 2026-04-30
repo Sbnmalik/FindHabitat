@@ -2,6 +2,7 @@ package com.findhabitat.services;
 
 import com.findhabitat.entities.House;
 import com.findhabitat.interfaces.CrudServiceInterface;
+import com.findhabitat.interfaces.HouseServiceInterface;
 import com.findhabitat.repositories.HouseRepository;
 import org.springframework.stereotype.Service;
 import com.findhabitat.dtos.HouseRequest;
@@ -11,7 +12,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
-public class HouseService implements CrudServiceInterface {
+public class HouseService implements HouseServiceInterface {
 
     private final HouseRepository houseRepository;
 
