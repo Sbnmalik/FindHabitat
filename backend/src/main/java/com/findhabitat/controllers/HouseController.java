@@ -5,7 +5,7 @@ import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import com.findhabitat.dtos.HouseRequest;
-import com.findhabitat.dtos.HouseResponse;
+
 
 import java.util.List;
 

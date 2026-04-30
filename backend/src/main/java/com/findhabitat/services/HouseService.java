@@ -9,7 +9,6 @@ import jakarta.validation.Validation;
 
 import org.springframework.stereotype.Service;
 import com.findhabitat.dtos.HouseRequest;
-import com.findhabitat.dtos.HouseResponse;
 
 import java.util.List;
 import java.util.stream.Collectors;

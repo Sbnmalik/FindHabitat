@@ -6,11 +6,11 @@ import java.util.List;
 
 @Getter
 @Setter
-public class ListResponse<T>{
+public class MultiResponse<T>{
     private List<T> data;    
     private int totalCount;
 
-    public ListResponse(List<T> data, int totalCount) {
+    public MultiResponse(List<T> data, int totalCount) {
         this.data = data;
         this.totalCount = data != null ? data.size() : 0;
     }
