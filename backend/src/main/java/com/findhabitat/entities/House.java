@@ -1,11 +1,7 @@
 package com.findhabitat.entities;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
@@ -69,5 +65,16 @@ public class House {
 
     @Column(nullable = false)
     private LocalDateTime updatedAt;
+// Lifecycle callbacks to set timestamps
+    @PrePersist
+        protected void onCreate() {
+        LocalDateTime now = LocalDateTime.now();
+        this.createdAt = now;
+        this.updatedAt = now;
+    }
 
+    @PreUpdate
+        protected void onUpdate() {
+        this.updatedAt = LocalDateTime.now();
+    }
 }
