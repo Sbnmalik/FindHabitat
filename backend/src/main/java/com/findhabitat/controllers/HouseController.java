@@ -5,6 +5,7 @@ import jakarta.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import com.findhabitat.dtos.HouseRequest;
 import com.findhabitat.entities.House;
@@ -23,5 +24,11 @@ public class HouseController implements CrudControllerInterface<House, HouseRequ
 
     public HouseController(@Autowired HouseServiceInterface houseService) {
         this.houseService = houseService;
+    }
+    @Override
+    public ResponseEntity<MultiResponse<House>> getAll() {
+        List<House> houses = this.houseService.getAll();
+        MultiResponse<House> multiResponse = new MultiResponse<>(houses);
+        return ResponseEntity.ok(multiResponse);
     }
 }
