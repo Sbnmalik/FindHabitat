@@ -1,17 +1,11 @@
 package com.findhabitat.dtos;
 
 import jakarta.validation.constraints.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
-// import lombok.Getter;
-// import lombok.Setter;
-// use @Getter and @Setter annotations from Lombok to generate getters and setters automatically
+
 @Getter
 @Setter
 @AllArgsConstructor
@@ -19,26 +13,26 @@ import java.time.LocalDate;
 @Builder
 public class HouseRequest {
     
-    @NotBlank
+    @NotBlank(message = "Address line is required")
     @Size(max = 200)
     private String addressLine;
 
-    @NotBlank
+    @NotBlank(message = "City is required")
     @Size(max = 100)
     private String city;
 
     @Size(max = 20)         
     private String postalCode;
 
-    @NotBlank
+    @NotBlank(message = "Property type is required")
     @Size(max = 50)
     private String propertyType;
 
-    @NotBlank
+    @NotBlank(message = "Ownership status is required")
     @Size(max = 50)
     private String ownershipStatus;
 
-    @Min(0)
+    @PositiveOrZero
     private Integer floorLevel;
 
     @NotNull
@@ -48,13 +42,14 @@ public class HouseRequest {
     private String description;
 
     @NotNull
-    @Min(0)
+    @PositiveOrZero
     private Integer bedrooms;
 
     @NotNull
-    @Min(0)
+    @PositiveOrZero
     private Integer bathrooms;
 
+    @FutureOrPresent
     private LocalDate moveInDate;
 
     @NotNull
@@ -64,6 +59,7 @@ public class HouseRequest {
     @DecimalMin(value = "0.0", inclusive = false)
     private BigDecimal livingAreaSqm;
 
-    private Boolean isAvailable;
+    @Builder.Default
+    private Boolean isAvailable = true;
 
 }
