@@ -20,7 +20,7 @@ import java.util.List;
 @RequestMapping("/api/houses")
 public class HouseController implements CrudControllerInterface<House, HouseRequest> {
 
-    private final HouseService houseService;
+    private final HouseServiceInterface houseService;
 
     public HouseController(@Autowired HouseServiceInterface houseService) {
         this.houseService = houseService;
@@ -48,5 +48,10 @@ public class HouseController implements CrudControllerInterface<House, HouseRequ
         House house = this.houseService.updateOneById(id, request);
         SingleResponse<House> singleResponse = new SingleResponse<>(house);
         return ResponseEntity.ok(singleResponse);
+    }
+    @Override
+    public ResponseEntity<Void> deleteOneById(@PathVariable Long id) {
+        this.houseService.deleteOneById(id);
+        return ResponseEntity.ok().build();
     }
 }
