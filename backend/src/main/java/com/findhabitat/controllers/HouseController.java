@@ -31,4 +31,10 @@ public class HouseController implements CrudControllerInterface<House, HouseRequ
         MultiResponse<House> multiResponse = new MultiResponse<>(houses);
         return ResponseEntity.ok(multiResponse);
     }
+    @Override
+    public ResponseEntity<SingleResponse<House>> getOneById(@PathVariable Long id) {
+        House house = this.houseService.getOneById(id);
+        SingleResponse<House> singleResponse = new SingleResponse<>(house);
+        return ResponseEntity.ok(singleResponse);
+    }
 }
