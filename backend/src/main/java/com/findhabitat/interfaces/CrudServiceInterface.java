@@ -11,5 +11,5 @@ public interface CrudServiceInterface <T, R> {
 
  T updateOneById(Long id, R request);
 
- T deleteOneById(Long id);
+ void deleteOneById(Long id);
 }
