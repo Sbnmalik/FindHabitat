@@ -13,7 +13,6 @@ import com.findhabitat.interfaces.CrudControllerInterface;
 import com.findhabitat.interfaces.HouseServiceInterface;
 import com.findhabitat.response.SingleResponse;
 import com.findhabitat.response.MultiResponse;
-
 import java.util.List;
 
 @RestController
