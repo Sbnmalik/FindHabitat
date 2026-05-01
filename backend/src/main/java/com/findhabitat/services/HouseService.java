@@ -16,7 +16,7 @@ public class HouseService implements HouseServiceInterface {
 
     @Override
     public List<House> getAll() {
-        return this.houseRepository.findAllByOrderByIdDesc();
+        return this.houseRepository.findAllByOrderByHouseIdDesc();
     }
 
     @Override
