@@ -1,7 +1,7 @@
 import {useForm} from "react-hook-form";
 import Button from "../../components/ui/Button";
 import { notifyError, notifySuccess } from "../../utils/toast";
-import "./HouseForm.css";
+import "../../styles/HouseForm.css";
 
 export default function CreateHouse() {
     const {    
