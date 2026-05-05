@@ -1,6 +1,5 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { getAllHouses, deleteHouse } from "../../api/houseApi";
-import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { notifySuccess, notifyError } from "../../utils/toast";
 import Button from "../../components/ui/Button";
@@ -17,6 +16,18 @@ export default function ListHouses() {
             notifyError("Failed to fetch houses");
         }   
     }
+useEffect(() => {
+  async function loadHouses() {
+    try {
+      const data = await getAllHouses();
+      setHouses(data);
+    } catch {
+      notifyError("Failed to fetch houses");
+    }
+  }
+
+  loadHouses();
+}, []);
 
     async function handleDelete(id) {
         try {
@@ -30,7 +41,7 @@ export default function ListHouses() {
     }
 
 return (
-    <main className="house-list-page">
+        <main className="house-list-page">
       <div className="list-header">
         <h1>Houses</h1>
         <Button onClick={() => navigate("/houses/create")}>
@@ -43,20 +54,24 @@ return (
           <p>No houses found.</p>
         ) : (
           houses.map((house) => (
-            <article key={house.id} className="house-card-item">
-              <h3>{house.address}</h3>
+            <article key={house.houseId} className="house-card-item">
+              <h3>{house.addressLine}</h3>
               <p>{house.city}</p>
               <p>€{house.monthlyPrice}</p>
 
               <div className="card-actions">
                 <Button
                   variant="secondary"
-                  onClick={() => navigate(`/houses/${house.id}/edit`)}
+                  onClick={() =>
+                    navigate(`/houses/${house.houseId}/edit`)
+                  }
                 >
                   Edit
                 </Button>
 
-                <Button onClick={() => handleDelete(house.id)}>
+                <Button
+                  onClick={() => handleDelete(house.houseId)}
+                >
                   Delete
                 </Button>
               </div>
