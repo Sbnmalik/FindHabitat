@@ -20,7 +20,9 @@ useEffect(() => {
   async function loadHouses() {
     try {
       const data = await getAllHouses();
-      setHouses(data);
+
+      console.log("Fetched houses:", data);
+      setHouses(Array.isArray(data) ? data : data.houses ?? []);
     } catch {
       notifyError("Failed to fetch houses");
     }

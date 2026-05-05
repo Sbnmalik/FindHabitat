@@ -3,6 +3,7 @@ import { getHouseById, updateHouse } from "../../api/houseApi";
 import { useEffect,useState } from "react";
 import { notifyError, notifySuccess } from "../../utils/toast";
 import "../../styles/HouseForm.css";
+import HouseForm from "../../components/layout/HouseForm";
 
 export default function EditHouse() {
     const { id } = useParams();
