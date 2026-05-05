@@ -2,8 +2,11 @@ import {useForm} from "react-hook-form";
 import Button from "../../components/ui/Button";
 import { notifyError, notifySuccess } from "../../utils/toast";
 import "../../styles/HouseForm.css";
+import { useNavigate } from "react-router-dom";
+import createHouse from "../../api/houseApi";
 
 export default function CreateHouse() {
+    const navigate = useNavigate();
     const {    
     register,
     handleSubmit,
@@ -19,15 +22,14 @@ export default function CreateHouse() {
   });
 
     const onSubmit = async (data) => {
-        try {
-            console.log("House form data:", data);
-            // Later await createHouse(data);
-            notifySuccess("House created successfully!");
-            reset();
-        } catch (error) {
-            console.error(error);
-            notifyError("Failed to create house");
-        }
+    try {
+         await createHouse(data);
+
+         notifySuccess("House created successfully.");
+         navigate("/");
+    } catch {
+        notifyError("Failed to create house.");
+    }
     };
     const onInvalid = () => {
     notifyError("Please fix the validation errors.");
