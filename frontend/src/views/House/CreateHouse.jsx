@@ -20,20 +20,19 @@ export default function CreateHouse() {
     },
   });
 
-    async function handleCreate(data) {
+    const onSubmit = async (data) => {
         try {
-            await createHouse(data);
-            navigate("/");
+            console.log("House form data:", data);
+            // Later await createHouse(data);
+            notifySuccess("House created successfully!");
+            reset();
         } catch (error) {
             console.error(error);
-            alert("Failed to create house");
+            notifyError("Failed to create house");
         }
-    }
+    };
+
 
     return (
-        <div>
-            <h1>Create House</h1>
-            <HouseForm onSubmit={handleCreate} submitLabel="Create House" />
-        </div>
     );
 }
