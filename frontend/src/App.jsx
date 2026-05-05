@@ -3,7 +3,8 @@ import "./App.css";
 import { Routes,Route, BrowserRouter } from "react-router-dom";
 import CreateHouse from "./views/House/CreateHouse";
 import EditHouse from "./views/House/EditHouse";
-import ListHouses from "./views/House/ListHouses";
+import ListHouses from "./views/House/Houses";
+import { Toaster } from "react-hot-toast";
 
 export default function App() {
   return (
@@ -13,6 +14,18 @@ export default function App() {
         <Route path="/houses/create" element={<CreateHouse />} />
         <Route path="/houses/:id/edit" element={<EditHouse />} />
       </Routes>
-    </BrowserRouter>
+
+      <Toaster
+        position="top-right"
+        toastOptions={{
+          duration: 3000,
+          style: {
+            borderRadius: "12px",
+            background: "#111827",
+            color: "#fff",
+          },
+        }}
+      />
+    </BrowserRouter>    
   );
 }
