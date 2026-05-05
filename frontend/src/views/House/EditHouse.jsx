@@ -2,6 +2,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import { getHouseById, updateHouse } from "../../api/houseApi";
 import { useEffect,useState } from "react";
 import { notifyError, notifySuccess } from "../../utils/toast";
+import "../../styles/HouseForm.css";
 
 export default function EditHouse() {
     const { id } = useParams();
@@ -21,9 +22,9 @@ export default function EditHouse() {
     loadHouse();
   }, [id]);
 
-    const onSubmit = async (data) => {
+    const handleUpdate = async (payload) => {
     try {
-      await updateHouse(id, data);
+      await updateHouse(id, payload);
       notifySuccess("House updated successfully.");
       navigate("/");
     } catch {
@@ -36,11 +37,19 @@ export default function EditHouse() {
   }
 
     return (
-      <HouseForm
-        title="Edit House"
-        defaultValues={house}
-        onSubmit={onSubmit}
-        submitLabel="Update House"
-      />
-    );
+    <main className="house-page">
+      <section className="house-card">
+        <div className="house-header">
+          <h1>Edit House</h1>
+          <p>Update the selected property details.</p>
+        </div>
+
+        <HouseForm
+          initialData={house}
+          onSubmit={handleUpdate}
+          submitLabel="Update House"
+        />
+      </section>
+    </main>
+  );
 }
