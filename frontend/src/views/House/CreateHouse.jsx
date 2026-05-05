@@ -31,6 +31,9 @@ export default function CreateHouse() {
             notifyError("Failed to create house");
         }
     };
+    const onInvalid = () => {
+    notifyError("Please fix the validation errors.");
+    };
 
 
     return (
