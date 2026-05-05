@@ -3,7 +3,7 @@ import "./App.css";
 import { Routes,Route, BrowserRouter } from "react-router-dom";
 import CreateHouse from "./views/House/CreateHouse";
 import EditHouse from "./views/House/EditHouse";
-import ListHouses from "./views/House/ListHouses";
+import ListHouses from "./views/House/Houses";
 import { Toaster } from "react-hot-toast";
 
 export default function App() {
