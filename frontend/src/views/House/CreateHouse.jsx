@@ -3,7 +3,7 @@ import Button from "../../components/ui/Button";
 import { notifyError, notifySuccess } from "../../utils/toast";
 import "../../styles/HouseForm.css";
 import { useNavigate } from "react-router-dom";
-import createHouse from "../../api/houseApi";
+import {createHouse} from "../../api/houseApi";
 
 export default function CreateHouse() {
     const navigate = useNavigate();
