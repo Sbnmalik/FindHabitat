@@ -1,0 +1,106 @@
+/* Page Layout Container */
+.house-list-page {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 40px 20px;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+/* Header with Title and Create Button */
+.list-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 32px;
+  border-bottom: 2px solid #f1f5f9;
+  padding-bottom: 20px;
+}
+
+.list-header h1 {
+  font-size: 2rem;
+  color: #0f172a;
+  margin: 0;
+  font-weight: 700;
+}
+
+/* Responsive Grid System */
+.house-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 24px;
+}
+
+/* Individual House Cards */
+.house-card-item {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 16px;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
+  transition: all 0.2s ease-in-out;
+  position: relative;
+}
+
+/* Smooth hover effect to elevate the card */
+.house-card-item:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  border-color: #cbd5e1;
+}
+
+/* House Details Inside Card */
+.house-card-item h3 {
+  font-size: 1.25rem;
+  color: #1e293b;
+  margin: 0 0 8px 0;
+  font-weight: 600;
+}
+
+/* City Name */
+.house-card-item p:nth-of-type(1) {
+  color: #64748b;
+  font-size: 0.95rem;
+  margin: 0 0 16px 0;
+}
+
+/* Monthly Price (Makes it pop!) */
+.house-card-item p:nth-of-type(2) {
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: #0f172a;
+  margin: 0 0 24px 0;
+  display: flex;
+  align-items: baseline;
+}
+
+.house-card-item p:nth-of-type(2)::after {
+  content: " / month";
+  font-size: 0.85rem;
+  color: #64748b;
+  font-weight: 400;
+  margin-left: 4px;
+}
+
+/* Action Buttons Container at bottom of Card */
+.card-actions {
+  display: flex;
+  gap: 12px;
+  margin-top: auto; /* Pushes buttons to the absolute bottom of the card */
+}
+
+/* Making sure buttons span nicely */
+.card-actions button {
+  flex: 1;
+  justify-content: center;
+}
+
+/* Empty State Styling */
+.house-grid > p {
+  grid-column: 1 / -1;
+  text-align: center;
+  color: #94a3b8;
+  font-size: 1.1rem;
+  padding: 60px 0;
+}

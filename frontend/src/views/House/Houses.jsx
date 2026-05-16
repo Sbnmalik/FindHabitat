@@ -1,42 +1,31 @@
-import { useEffect, useState } from "react";
+import { useEffect,useState } from "react";
 import { getAllHouses, deleteHouse } from "../../api/houseApi";
 import { useNavigate } from "react-router-dom";
 import { notifySuccess, notifyError } from "../../utils/toast";
 import Button from "../../components/ui/Button";
+import "../../components/ui/Houses.css";
 
 export default function ListHouses() {
     const [houses, setHouses] = useState([]);
     const navigate = useNavigate();
 
+    useEffect(() => {
     async function fetchHouses() {
         try {
-            const data = await getAllHouses();
-            setHouses(data);
+            const response = await getAllHouses();
+            setHouses(Array.isArray(response) ? response : response.data ?? []);
         } catch {
             notifyError("Failed to fetch houses");
         }   
     }
-useEffect(() => {
-  async function loadHouses() {
-    try {
-      const data = await getAllHouses();
-
-      console.log("Fetched houses:", data);
-      setHouses(Array.isArray(data) ? data : data.houses ?? []);
-    } catch {
-      notifyError("Failed to fetch houses");
-    }
-  }
-
-  loadHouses();
-}, []);
+    fetchHouses();
+    }, []);
 
     async function handleDelete(id) {
         try {
             await deleteHouse(id);
             setHouses((prev) => prev.filter((house) => house.houseId !== id));
             notifySuccess("House deleted successfully.");
-            fetchHouses();
         } catch {
             notifyError("Failed to delete house");
         }
