@@ -3,6 +3,7 @@ import { getAllHouses, deleteHouse } from "../../api/houseApi";
 import { useNavigate } from "react-router-dom";
 import { notifySuccess, notifyError } from "../../utils/toast";
 import Button from "../../components/ui/Button";
+import "../../components/ui/Houses.css";
 
 export default function ListHouses() {
     const [houses, setHouses] = useState([]);
