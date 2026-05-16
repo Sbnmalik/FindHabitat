@@ -10,8 +10,8 @@ export default function ListHouses() {
 
     async function fetchHouses() {
         try {
-            const data = await getAllHouses();
-            setHouses(data);
+            const response = await getAllHouses();
+            setHouses(Array.isArray(response) ? response : response.data ?? []);
         } catch {
             notifyError("Failed to fetch houses");
         }   
