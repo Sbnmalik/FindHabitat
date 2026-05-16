@@ -16,20 +16,6 @@ export default function ListHouses() {
             notifyError("Failed to fetch houses");
         }   
     }
-useEffect(() => {
-  async function loadHouses() {
-    try {
-      const data = await getAllHouses();
-
-      console.log("Fetched houses:", data);
-      setHouses(Array.isArray(data) ? data : data.houses ?? []);
-    } catch {
-      notifyError("Failed to fetch houses");
-    }
-  }
-
-  loadHouses();
-}, []);
 
     async function handleDelete(id) {
         try {
