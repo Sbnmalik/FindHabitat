@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect,useState } from "react";
 import { getAllHouses, deleteHouse } from "../../api/houseApi";
 import { useNavigate } from "react-router-dom";
 import { notifySuccess, notifyError } from "../../utils/toast";
@@ -8,6 +8,7 @@ export default function ListHouses() {
     const [houses, setHouses] = useState([]);
     const navigate = useNavigate();
 
+    useEffect(() => {
     async function fetchHouses() {
         try {
             const response = await getAllHouses();
@@ -16,13 +17,14 @@ export default function ListHouses() {
             notifyError("Failed to fetch houses");
         }   
     }
+    fetchHouses();
+    }, []);
 
     async function handleDelete(id) {
         try {
             await deleteHouse(id);
             setHouses((prev) => prev.filter((house) => house.houseId !== id));
             notifySuccess("House deleted successfully.");
-            fetchHouses();
         } catch {
             notifyError("Failed to delete house");
         }
