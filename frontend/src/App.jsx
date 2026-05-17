@@ -5,6 +5,8 @@ import CreateHouse from "./views/House/CreateHouse";
 import EditHouse from "./views/House/EditHouse";
 import ListHouses from "./views/House/Houses";
 import { Toaster } from "react-hot-toast";
+import Register from "./pages/RegisterPage";
+import Login from "./pages/LoginPage";
 
 export default function App() {
   return (
@@ -13,6 +15,8 @@ export default function App() {
         <Route path="/" element={<ListHouses />} />
         <Route path="/houses/create" element={<CreateHouse />} />
         <Route path="/houses/:id/edit" element={<EditHouse />} />
+        <Route path="/register" element={<Register />} />
+        <Route path="/login" element={<Login />} />
       </Routes>
 
       <Toaster
