@@ -1,3 +1,5 @@
+import { getBasicAuthHeader } from "../utils/authStorage";
+
 const BASE_URL = 'http://localhost:8081/api/houses';
 
 export async function getAllHouses() {
@@ -20,6 +22,7 @@ export async function createHouse(houseData) {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
+      Authorization: getBasicAuthHeader(),
     },
     body: JSON.stringify(houseData),
   });
@@ -35,6 +38,7 @@ export async function updateHouse(id, houseData) {
     method: "PUT",
     headers: {
       "Content-Type": "application/json",
+      Authorization: getBasicAuthHeader(),
     },
     body: JSON.stringify(houseData),
   });
@@ -48,6 +52,9 @@ export async function updateHouse(id, houseData) {
 export async function deleteHouse(id) {
   const response = await fetch(`${BASE_URL}/${id}`, {
     method: "DELETE",
+    headers: {
+      Authorization: getBasicAuthHeader(),
+    },
   });
 
   if (!response.ok) {
