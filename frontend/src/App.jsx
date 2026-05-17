@@ -7,14 +7,7 @@ import "./App.css";
 export default function App() {
   return (
     <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<Navigate to="/login" replace />} />
-        <Route path="/houses/create" element={<CreateHouse />} />
-        <Route path="/houses/:id/edit" element={<EditHouse />} />
-        <Route path="/register" element={<Register />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/houses" element={<ListHouses />} />
-      </Routes>
+      <AppRouter />
 
       <Toaster
         position="top-right"
