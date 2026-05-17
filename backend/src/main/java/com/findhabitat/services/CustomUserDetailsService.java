@@ -1,5 +1,5 @@
 package com.findhabitat.services;
 
-public class UserDetailsService {
+public class CustomUserDetailsService {
     
 }
