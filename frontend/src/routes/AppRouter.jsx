@@ -7,7 +7,6 @@ import Login from "../pages/LoginPage";
 
 export default function AppRouter() {
   return (
-    <BrowserRouter>
       <Routes>
         <Route path="/" element={<Navigate to="/login" replace />} />
 
@@ -18,6 +17,5 @@ export default function AppRouter() {
         <Route path="/houses/create" element={<CreateHouse />} />
         <Route path="/houses/:id/edit" element={<EditHouse />} />
       </Routes>
-    </BrowserRouter>
   );
 }

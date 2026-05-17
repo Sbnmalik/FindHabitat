@@ -34,7 +34,7 @@ export default function Login() {
 
       saveAuthData(result.user, result.basicAuthHeader);
 
-      navigate("/");
+      navigate("/houses");
     } catch (error) {
       setError(error.message);
     } finally {
