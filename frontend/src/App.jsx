@@ -1,6 +1,6 @@
 import AppRouter from "./routes/AppRouter";
 import "./App.css";
-import { Routes,Route, BrowserRouter } from "react-router-dom";
+import { Routes,Route, BrowserRouter, Navigate } from "react-router-dom";
 import CreateHouse from "./views/House/CreateHouse";
 import EditHouse from "./views/House/EditHouse";
 import ListHouses from "./views/House/Houses";
@@ -12,11 +12,12 @@ export default function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<ListHouses />} />
+        <Route path="/" element={<Navigate to="/login" replace />} />
         <Route path="/houses/create" element={<CreateHouse />} />
         <Route path="/houses/:id/edit" element={<EditHouse />} />
         <Route path="/register" element={<Register />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/houses" element={<ListHouses />} />
       </Routes>
 
       <Toaster
