@@ -1,8 +1,7 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-import MainLayout from "../components/layout/MainLayout";
-import HomePage from "../pages/HomePage";
-import AboutPage from "../pages/AboutPage";
-import NotFoundPage from "../pages/NotFoundPage";
+import { Navigate, Routes, Route } from "react-router-dom";
+import CreateHouse from "../views/House/CreateHouse";
+import EditHouse from "../views/House/EditHouse";
+import ListHouses from "../views/House/Houses";
 import Register from "../pages/RegisterPage";
 import Login from "../pages/LoginPage";
 
@@ -10,13 +9,14 @@ export default function AppRouter() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<MainLayout />}>
-          <Route index element={<HomePage />} />
-          <Route path="about" element={<AboutPage />} />
-          <Route path="register" element={<Register />} />
-          <Route path="login" element={<Login />} />
-          <Route path="*" element={<NotFoundPage />} />
-        </Route>
+        <Route path="/" element={<Navigate to="/login" replace />} />
+
+        <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Register />} />
+
+        <Route path="/houses" element={<ListHouses />} />
+        <Route path="/houses/create" element={<CreateHouse />} />
+        <Route path="/houses/:id/edit" element={<EditHouse />} />
       </Routes>
     </BrowserRouter>
   );
