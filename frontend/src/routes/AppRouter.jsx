@@ -3,6 +3,8 @@ import MainLayout from "../components/layout/MainLayout";
 import HomePage from "../pages/HomePage";
 import AboutPage from "../pages/AboutPage";
 import NotFoundPage from "../pages/NotFoundPage";
+import Register from "../pages/RegisterPage";
+import Login from "../pages/LoginPage";
 
 export default function AppRouter() {
   return (
@@ -11,6 +13,8 @@ export default function AppRouter() {
         <Route path="/" element={<MainLayout />}>
           <Route index element={<HomePage />} />
           <Route path="about" element={<AboutPage />} />
+          <Route path="register" element={<Register />} />
+          <Route path="login" element={<Login />} />
           <Route path="*" element={<NotFoundPage />} />
         </Route>
       </Routes>
