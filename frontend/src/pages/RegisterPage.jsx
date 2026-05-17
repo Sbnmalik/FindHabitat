@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import { registerUser } from "../api/authApi";
+import "../styles/Auth.css";
 
 export default function Register() {
   const navigate = useNavigate();
@@ -43,6 +44,9 @@ export default function Register() {
     <main className="auth-page">
       <section className="auth-card">
         <h1>Create account</h1>
+        <p className="auth-subtitle">
+          Join FindHabitat to post homes or request available housing.
+        </p>
 
         {error && <p className="error-message">{error}</p>}
 
@@ -54,6 +58,7 @@ export default function Register() {
               name="fullName"
               value={formData.fullName}
               onChange={handleChange}
+              placeholder="Enter your full name"
               required
             />
           </label>
@@ -65,6 +70,7 @@ export default function Register() {
               name="email"
               value={formData.email}
               onChange={handleChange}
+              placeholder="Enter your email"
               required
             />
           </label>
@@ -76,6 +82,7 @@ export default function Register() {
               name="password"
               value={formData.password}
               onChange={handleChange}
+              placeholder="Create a password"
               required
             />
           </label>
@@ -93,7 +100,7 @@ export default function Register() {
           </button>
         </form>
 
-        <p>
+        <p className="auth-switch">
           Already have an account? <Link to="/login">Login</Link>
         </p>
       </section>
