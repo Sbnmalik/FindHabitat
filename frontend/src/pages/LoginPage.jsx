@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import { loginUser } from "../api/authApi";
 import { saveAuthData } from "../utils/authStorage";
+import "../styles/Auth.css";
 
 export default function Login() {
   const navigate = useNavigate();
@@ -45,6 +46,9 @@ export default function Login() {
     <main className="auth-page">
       <section className="auth-card">
         <h1>Login</h1>
+        <p className="auth-subtitle">
+          Sign in to manage homes and continue using FindHabitat.
+        </p>
 
         {error && <p className="error-message">{error}</p>}
 
@@ -56,6 +60,7 @@ export default function Login() {
               name="email"
               value={formData.email}
               onChange={handleChange}
+              placeholder="Enter your email"
               required
             />
           </label>
@@ -67,6 +72,7 @@ export default function Login() {
               name="password"
               value={formData.password}
               onChange={handleChange}
+              placeholder="Enter your password"
               required
             />
           </label>
@@ -76,7 +82,7 @@ export default function Login() {
           </button>
         </form>
 
-        <p>
+        <p className="auth-switch">
           No account yet? <Link to="/register">Register</Link>
         </p>
       </section>
