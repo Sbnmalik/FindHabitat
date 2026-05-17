@@ -1,12 +1,8 @@
+import { BrowserRouter } from "react-router-dom";
+import { Toaster } from "react-hot-toast";
+
 import AppRouter from "./routes/AppRouter";
 import "./App.css";
-import { Routes,Route, BrowserRouter, Navigate } from "react-router-dom";
-import CreateHouse from "./views/House/CreateHouse";
-import EditHouse from "./views/House/EditHouse";
-import ListHouses from "./views/House/Houses";
-import { Toaster } from "react-hot-toast";
-import Register from "./pages/RegisterPage";
-import Login from "./pages/LoginPage";
 
 export default function App() {
   return (
