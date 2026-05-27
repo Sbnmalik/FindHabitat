@@ -17,6 +17,7 @@ public class AuthService {
 
     private final AppUserRepository appUserRepository;
     private final PasswordEncoder passwordEncoder;
+    private final JwtService jwtService;
 
     public UserResponse register(RegisterRequest request) {
         String fullName = requireText(request.getFullName(), "Full name is required.");
