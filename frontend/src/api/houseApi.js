@@ -1,63 +1,60 @@
-import { getBasicAuthHeader } from "../utils/authStorage";
+import { getToken } from "../utils/authStorage";
 
 const BASE_URL = 'http://localhost:8081/api/houses';
+function getAuthHeaders() {
+  const token = getToken();
 
-export async function getAllHouses() {
-      const response = await fetch(BASE_URL);
+  return {
+    "Content-Type": "application/json",
+    ...(token && { Authorization: `Bearer ${token}` }),
+  };
+}
+
+async function handleResponse(response) {
   if (!response.ok) {
-    throw new Error("Failed to fetch houses");
+    const errorText = await response.text();
+    throw new Error(errorText || "Request failed");
   }
+
+  if (response.status === 204) {
+    return null;
+  }
+
   return response.json();
+}
+export async function getAllHouses() {
+  const response = await fetch(BASE_URL, {
+    headers: getAuthHeaders(),
+  });
+  return handleResponse(response);
 
 }
 export async function getHouseById(id) {
-  const response = await fetch(`${BASE_URL}/${id}`);
-  if (!response.ok) {
-    throw new Error("Failed to fetch house");
-  }
-  return response.json();
+  const response = await fetch(`${BASE_URL}/${id}`, {
+    headers: getAuthHeaders(),
+  });
+  return handleResponse(response);
 }
 export async function createHouse(houseData) {
   const response = await fetch(BASE_URL, {
     method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-      Authorization: getBasicAuthHeader(),
-    },
+    headers: getAuthHeaders(),
     body: JSON.stringify(houseData),
   });
-
-  if (!response.ok) {
-    throw new Error("Failed to create house");
-  }
-
-  return response.json();
+  return handleResponse(response);
 }
 export async function updateHouse(id, houseData) {
   const response = await fetch(`${BASE_URL}/${id}`, {
     method: "PUT",
-    headers: {
-      "Content-Type": "application/json",
-      Authorization: getBasicAuthHeader(),
-    },
+    headers: getAuthHeaders(),
     body: JSON.stringify(houseData),
   });
-
-  if (!response.ok) {
-    throw new Error("Failed to update house");
-  }
-
-  return response.json();
+  return handleResponse(response);
 }
 export async function deleteHouse(id) {
   const response = await fetch(`${BASE_URL}/${id}`, {
     method: "DELETE",
-    headers: {
-      Authorization: getBasicAuthHeader(),
-    },
+    headers: getAuthHeaders(),
   });
-
-  if (!response.ok) {
-    throw new Error("Failed to delete house");
-  }
+  return handleResponse(response);
 }
