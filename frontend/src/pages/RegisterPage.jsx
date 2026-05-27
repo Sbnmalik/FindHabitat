@@ -10,7 +10,6 @@ export default function Register() {
     fullName: "",
     email: "",
     password: "",
-    role: "USER",
   });
 
   const [error, setError] = useState("");
@@ -31,15 +30,15 @@ export default function Register() {
     setIsSubmitting(true);
 
     try {
-      await registerUser(formData);
-      navigate("/login");
+      const authResponse = await registerUser(data);
+      
+      saveAuthData(authResponse);
+      navigate("/houses");
     } catch (error) {
-      setError(error.message);
-    } finally {
-      setIsSubmitting(false);
-    }
+      console.error(error);
+      setError("Registration failed. Please try again.");
+    } 
   }
-
   return (
     <main className="auth-page">
       <section className="auth-card">
