@@ -3,6 +3,7 @@ package com.findhabitat.entities;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
@@ -11,6 +12,7 @@ import lombok.Setter;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
+@Builder
 @Table(
     name = "app_user",
     uniqueConstraints = {

@@ -1,17 +1,19 @@
 package com.findhabitat.dtos;
 
-import com.findhabitat.entities.UserRole;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
 
-@Getter
-@Setter
-@NoArgsConstructor
-public class RegisterRequest {
-    
-    public String fullName;
-    public String email;
-    public String password;
-    public UserRole role;
-}
+public record RegisterRequest (
+        @NotBlank(message = "Full name is required")
+        String fullName,
+
+        @NotBlank(message = "Email is required")
+        @Email(message = "Email must be valid")
+        String email,
+
+        @NotBlank(message = "Password is required")
+        @Size(min = 6, message = "Password must be at least 6 characters")
+        String password
+){}
+
