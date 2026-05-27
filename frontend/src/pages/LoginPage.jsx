@@ -30,13 +30,16 @@ export default function Login() {
     setIsSubmitting(true);
 
     try {
-      const authResponse = await loginUser({ formData });
+      const authResponse = await loginUser(formData);
       
       saveAuthData(authResponse);
       navigate("/houses");
     }  catch (error) {
       console.error(error);
       alert("Login failed: " + error.message);
+    }
+    finally {
+      setIsSubmitting(false);
     }
   } 
 
