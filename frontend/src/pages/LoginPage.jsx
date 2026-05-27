@@ -26,21 +26,17 @@ export default function Login() {
 
   async function handleSubmit(event) {
     event.preventDefault();
-    setError("");
-    setIsSubmitting(true);
 
     try {
-      const result = await loginUser(formData.email, formData.password);
-
-      saveAuthData(result.user, result.basicAuthHeader);
-
+      const authResponse = await loginUser({ email, password });
+      
+      saveAuthData(authResponse);
       navigate("/houses");
-    } catch (error) {
-      setError(error.message);
-    } finally {
-      setIsSubmitting(false);
+    }  catch (error) {
+      console.error(error);
+      alert("Login failed: " + error.message);
     }
-  }
+  } 
 
   return (
     <main className="auth-page">
