@@ -1,4 +1,4 @@
-const BASE_URL = "http://localhost:8081/api";
+const API_BASE_URL = "http://localhost:8081/api";
 
 async function handleResponse(response) {
   if (!response.ok) {
@@ -10,7 +10,7 @@ async function handleResponse(response) {
 }
 
 export async function registerUser(data) {
-  const response = await fetch(`${BASE_URL}/register`, {
+  const response = await fetch(`${API_BASE_URL}/register`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -22,7 +22,7 @@ export async function registerUser(data) {
 }
 
 export async function loginUser(data) {
-  const response = await fetch(`${BASE_URL}/login`, {
+  const response = await fetch(`${API_BASE_URL}/login`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
