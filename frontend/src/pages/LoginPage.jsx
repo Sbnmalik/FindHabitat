@@ -26,9 +26,11 @@ export default function Login() {
 
   async function handleSubmit(event) {
     event.preventDefault();
+    setError("");
+    setIsSubmitting(true);
 
     try {
-      const authResponse = await loginUser({ email, password });
+      const authResponse = await loginUser({ formData });
       
       saveAuthData(authResponse);
       navigate("/houses");
