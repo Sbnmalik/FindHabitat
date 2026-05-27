@@ -1,46 +1,36 @@
 const API_BASE_URL = "http://localhost:8081/api";
 
-function createBasicAuthHeader(email, password) {
-  const encodedCredentials = btoa(`${email}:${password}`);
-  return `Basic ${encodedCredentials}`;
+async function handleResponse(response) {
+  if (!response.ok) {
+    const errorText = await response.text();
+    throw new Error(errorText || "Authentication request failed");
+  }
+
+  return response.json();
 }
 
-export async function registerUser(registerData) {
-  const response = await fetch(`${API_BASE_URL}/auth/register`, {
+export async function registerUser(data) {
+  const response = await fetch(`${BASE_URL}/register`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
     },
-    body: JSON.stringify(registerData),
+    body: JSON.stringify(data),
   });
 
-  const data = await response.json();
-
-  if (!response.ok) {
-    throw new Error(data.message || "Registration failed.");
-  }
-
-  return data;
+  return handleResponse(response);
 }
 
-export async function loginUser(email, password) {
-  const basicAuthHeader = createBasicAuthHeader(email, password);
-
-  const response = await fetch(`${API_BASE_URL}/auth/me`, {
-    method: "GET",
+export async function loginUser(data) {
+  const response = await fetch(`${BASE_URL}/login`, {
+    method: "POST",
     headers: {
-      Authorization: basicAuthHeader,
+      "Content-Type": "application/json",
     },
+    body: JSON.stringify(data),
   });
 
-  if (!response.ok) {
-    throw new Error("Invalid email or password.");
-  }
-
-  const user = await response.json();
-
-  return {
-    user,
-    basicAuthHeader,
-  };
+  return handleResponse(response);
 }
+
+
