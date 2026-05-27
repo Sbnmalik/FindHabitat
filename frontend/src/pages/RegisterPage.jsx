@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import { registerUser } from "../api/authApi";
+import { saveAuthData } from "../utils/authStorage";
 import "../styles/Auth.css";
 
 export default function Register() {
@@ -30,7 +31,7 @@ export default function Register() {
     setIsSubmitting(true);
 
     try {
-      const authResponse = await registerUser(data);
+      const authResponse = await registerUser(formData);
       
       saveAuthData(authResponse);
       navigate("/houses");
