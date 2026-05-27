@@ -7,6 +7,9 @@ import org.springframework.security.oauth2.jwt.JwtEncoder;
 import org.springframework.security.oauth2.jwt.JwtEncoderParameters;
 import org.springframework.stereotype.Service;
 
+import org.springframework.security.oauth2.jose.jws.MacAlgorithm;
+import org.springframework.security.oauth2.jwt.JwsHeader;
+
 import com.findhabitat.config.JwtProperties;
 import com.findhabitat.entities.AppUser;
 
@@ -33,6 +36,11 @@ public class JwtService {
                 .claim("userId", user.getId())
                 .claim("role", user.getRole().name())
                 .build();
-        return jwtEncoder.encode(JwtEncoderParameters.from(claims)).getTokenValue();
+        JwsHeader jwsHeader = JwsHeader.with(MacAlgorithm.HS256).build();
+
+        return jwtEncoder
+                .encode(JwtEncoderParameters.from(jwsHeader, claims))
+                .getTokenValue();    
+            
     }
 }
