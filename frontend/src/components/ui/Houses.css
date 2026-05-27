@@ -104,3 +104,9 @@
   font-size: 1.1rem;
   padding: 60px 0;
 }
+
+.header-actions {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
