@@ -1,5 +1,5 @@
 import { Navigate } from "react-router-dom";
-import { isAuthenticated } from "../utils/authStorage";
+import { isAuthenticated } from "../../utils/authStorage";
 
 function ProtectedRoute({ children }) {
   if (!isAuthenticated()) {
