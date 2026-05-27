@@ -26,10 +26,8 @@ import jakarta.servlet.http.HttpServletRequest;
 public class SecurityConfig {
 
     @Bean
-    SecurityFilterChain securityFilterChain(
-            HttpSecurity http,
-            DaoAuthenticationProvider authenticationProvider
-    )       throws Exception {
+    SecurityFilterChain securityFilterChain(HttpSecurity http)                 
+    throws Exception {
         http
             .cors(cors -> cors.configurationSource(corsConfigurationSource()))
             .csrf(csrf -> csrf.disable())
