@@ -30,17 +30,18 @@ export default function Login() {
     setIsSubmitting(true);
 
     try {
-      const result = await loginUser(formData.email, formData.password);
-
-      saveAuthData(result.user, result.basicAuthHeader);
-
+      const authResponse = await loginUser(formData);
+      
+      saveAuthData(authResponse);
       navigate("/houses");
-    } catch (error) {
-      setError(error.message);
-    } finally {
+    }  catch (error) {
+      console.error(error);
+      alert("Login failed: " + error.message);
+    }
+    finally {
       setIsSubmitting(false);
     }
-  }
+  } 
 
   return (
     <main className="auth-page">

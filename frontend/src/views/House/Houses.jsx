@@ -4,6 +4,8 @@ import { useNavigate } from "react-router-dom";
 import { notifySuccess, notifyError } from "../../utils/toast";
 import Button from "../../components/ui/Button";
 import "../../components/ui/Houses.css";
+import {clearAuthData} from "../../utils/authStorage";
+
 
 export default function ListHouses() {
     const [houses, setHouses] = useState([]);
@@ -30,14 +32,24 @@ export default function ListHouses() {
             notifyError("Failed to delete house");
         }
     }
-
+    function handleLogout() {
+        clearAuthData();
+        navigate("/login");
+    }
 return (
         <main className="house-list-page">
       <div className="list-header">
         <h1>Houses</h1>
-        <Button onClick={() => navigate("/houses/create")}>
-          + Create House
-        </Button>
+
+        <div className="header-actions">
+          <Button onClick={() => navigate("/houses/create")}>
+            + Create House
+          </Button>
+
+          <Button variant="secondary" onClick={handleLogout}>
+            Logout
+          </Button>
+        </div>
       </div>
 
       <div className="house-grid">

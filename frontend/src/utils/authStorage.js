@@ -1,26 +1,25 @@
 const USER_KEY = "findhabitat_user";
-const BASIC_AUTH_KEY = "findhabitat_basic_auth";
+const TOKEN_KEY = "findhabitat_token";
 
-export function saveAuthData(user, basicAuthHeader) {
-  localStorage.setItem(USER_KEY, JSON.stringify(user));
-  localStorage.setItem(BASIC_AUTH_KEY, basicAuthHeader);
+export function saveAuthData(authResponse) {
+  localStorage.setItem(TOKEN_KEY, authResponse.token);
+  localStorage.setItem(USER_KEY, JSON.stringify(authResponse.user));
 }
 
+export function getToken() {
+  return localStorage.getItem(TOKEN_KEY);
+}
 export function getCurrentUser() {
-  const storedUser = localStorage.getItem(USER_KEY);
+  const user = localStorage.getItem(USER_KEY);
+  return user ? JSON.parse(user) : null;
 
-  if (!storedUser) {
-    return null;
-  }
-
-  return JSON.parse(storedUser);
 }
 
-export function getBasicAuthHeader() {
-  return localStorage.getItem(BASIC_AUTH_KEY);
+export function isAuthenticated() {
+  return !!localStorage.getItem(TOKEN_KEY);
 }
 
 export function clearAuthData() {
   localStorage.removeItem(USER_KEY);
-  localStorage.removeItem(BASIC_AUTH_KEY);
+  localStorage.removeItem(TOKEN_KEY);
 }

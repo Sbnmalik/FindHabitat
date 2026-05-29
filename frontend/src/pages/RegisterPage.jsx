@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import { registerUser } from "../api/authApi";
+import { saveAuthData } from "../utils/authStorage";
 import "../styles/Auth.css";
 
 export default function Register() {
@@ -10,7 +11,6 @@ export default function Register() {
     fullName: "",
     email: "",
     password: "",
-    role: "USER",
   });
 
   const [error, setError] = useState("");
@@ -31,15 +31,15 @@ export default function Register() {
     setIsSubmitting(true);
 
     try {
-      await registerUser(formData);
-      navigate("/login");
+      const authResponse = await registerUser(formData);
+      
+      saveAuthData(authResponse);
+      navigate("/houses");
     } catch (error) {
-      setError(error.message);
-    } finally {
-      setIsSubmitting(false);
-    }
+      console.error(error);
+      setError("Registration failed. Please try again.");
+    } 
   }
-
   return (
     <main className="auth-page">
       <section className="auth-card">
