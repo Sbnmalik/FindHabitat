@@ -16,14 +16,25 @@ services:
       timeout: 5s
       retries: 20
       start_period: 30s
-
+  init-db:
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    container_name: findhabitat-init-db
+    depends_on:
+      sqlserver:
+        condition: service_healthy
+    environment:
+      DB_PASSWORD: "${DB_PASSWORD}"
+    volumes:
+      - ./docker/sqlserver/init-db.sh:/init-db.sh
+    command: /bin/bash /init-db.sh
+    restart: "no"
   backend:
     build:
       context: ./backend
     container_name: findhabitat-backend
     depends_on:
-      sqlserver:
-        condition: service_healthy
+    init-db:
+    condition: service_completed_successfully
     environment:
       DB_URL: "jdbc:sqlserver://sqlserver:1433;databaseName=findhabitat;encrypt=true;trustServerCertificate=true;"
       DB_USERNAME: "sa"
