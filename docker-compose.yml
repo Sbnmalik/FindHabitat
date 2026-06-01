@@ -25,8 +25,8 @@ services:
       sqlserver:
         condition: service_healthy
     environment:
-      DB_URL: "jdbc:sqlserver://localhost:1433;databaseName=findhabitat;encrypt=true;trustServerCertificate=true;"
-      DB_USERNAME: "${DB_USERNAME}"
+      DB_URL: "jdbc:sqlserver://sqlserver:1433;databaseName=findhabitat;encrypt=true;trustServerCertificate=true;"
+      DB_USERNAME: "sa"
       DB_PASSWORD: "${DB_PASSWORD}"
       JWT_SECRET: "${JWT_SECRET}"
     expose:
