@@ -33,8 +33,8 @@ services:
       context: ./backend
     container_name: findhabitat-backend
     depends_on:
-    init-db:
-    condition: service_completed_successfully
+      init-db:
+        condition: service_completed_successfully
     environment:
       DB_URL: "jdbc:sqlserver://sqlserver:1433;databaseName=findhabitat;encrypt=true;trustServerCertificate=true;"
       DB_USERNAME: "sa"
