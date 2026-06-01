@@ -4,7 +4,7 @@ services:
     container_name: findhabitat-sqlserver
     environment:
       ACCEPT_EULA: "Y"
-      MSSQL_SA_PASSWORD: "${MSSQL_SA_PASSWORD}"
+      MSSQL_SA_PASSWORD: "${DB_PASSWORD}"
       MSSQL_PID: "Express"
     ports:
       - "1433:1433"
@@ -25,9 +25,9 @@ services:
       sqlserver:
         condition: service_healthy
     environment:
-      DB_URL: "jdbc:sqlserver://sqlserver:1433;databaseName=findhabitat;encrypt=true;trustServerCertificate=true"
-      DB_USERNAME: "sa"
-      DB_PASSWORD: "${MSSQL_SA_PASSWORD}"
+      DB_URL: "${DB_URL}"
+      DB_USERNAME: "${DB_USERNAME}"
+      DB_PASSWORD: "${DB_PASSWORD}"
       JWT_SECRET: "${JWT_SECRET}"
     expose:
       - "8081"
