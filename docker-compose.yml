@@ -29,8 +29,7 @@ services:
     command: /bin/bash /init-db.sh
     restart: "no"
   backend:
-    build:
-      context: ./backend
+    image: ghcr.io/sbnmalik/findhabitat-backend:latest
     container_name: findhabitat-backend
     depends_on:
       init-db:
@@ -45,8 +44,7 @@ services:
     restart: unless-stopped
 
   frontend:
-    build:
-      context: ./frontend
+    image: ghcr.io/sbnmalik/findhabitat-frontend:latest
     container_name: findhabitat-frontend
     depends_on:
       - backend
