@@ -2,6 +2,8 @@ FROM mcr.microsoft.com/openjdk/jdk:17-azurelinux AS build
 
 WORKDIR /app
 
+RUN tdnf install -y tar gzip && tdnf clean all
+
 COPY mvnw .
 COPY .mvn .mvn
 COPY pom.xml .
