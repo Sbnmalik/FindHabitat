@@ -1,4 +1,4 @@
-FROM eclipse-temurin:17-jdk AS build
+FROM mcr.microsoft.com/openjdk/jdk:17-azurelinux AS build
 
 WORKDIR /app
 
@@ -14,7 +14,7 @@ COPY src src
 RUN ./mvnw clean package -DskipTests
 
 
-FROM eclipse-temurin:17-jre
+FROM mcr.microsoft.com/openjdk/jdk:17-azurelinux
 
 WORKDIR /app
 
